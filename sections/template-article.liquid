@@ -1,4 +1,4 @@
-<article class="py-8" itemscope itemtype="https://schema.org/BlogPosting">
+<article class="py-8" itemscope itemtype="http://schema.org/BlogPosting">
     {% for block in section.blocks %}
         {% case block.type %}
             {% when 'article_title' %}
@@ -10,7 +10,7 @@
                 </div>   
             {% when 'article_author' %}
                 <div class="flex items-center justify-center">
-                    <div class="max-w-7xl text-center" itemscope itemtype="https://schema.org/Person">
+                    <div class="max-w-7xl text-center" itemscope itemtype="http://schema.org/Person">
                         {% if section.settings.enable_author %}
                             <small itemscope="author">{{ article.author }}</small>
                         {% endif %}
@@ -143,7 +143,22 @@
     </div>
 {% endif %}
 
-
+<script>
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": {{ article.title | json}},
+        "articleBody": {{ article.content | strip_html | json}},
+        {% if article.excerpt != blank %}
+            "description": {{ article.excerpt |  strip_html | json }},
+        {% endif %}   
+        {% if article.image %}
+            "image": [
+                {{ article.image |  img_url: 'medium' |  prepend: 'https:' | json }}
+            ],
+        {% endif %}   
+    }
+</script>
 
 
 
