@@ -3,7 +3,7 @@
         <a href="{{ product_product.url }}">
             {% if product_product.featured_image %}
                 <div class="h-80 overflow-hidden">
-                    <img class="w-full h-full object-cover" src="{{ product_product.featured_image | img_url: 'medium' }}" alt="{{ product_product.featured_image.alt }}">
+                    <img class="w-full h-full object-cover transition duration-1000 ease-in-out hover:scale-105 tranform" src="{{ product_product.featured_image | img_url: 'medium' }}" alt="{{ product_product.featured_image.alt }}">
                 </div> 
             {% else %}
                 {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-cover bg-gray-100' }}      
@@ -11,7 +11,9 @@
         </a>
 
         <div class="flex flex-col p-4">
-            <span class="text-sm text-gray-400">{{ product_product.vendor }}</span>
+            {% if section.settings.vendor_name %}
+                <span class="text-sm text-gray-400">{{ product_product.vendor }}</span>    
+            {% endif %}
         
             <a href="{{ product_product.url }}" class="text-gray-700 uppercase font-medium">{{ product_product.title }}</a>
     
@@ -20,4 +22,4 @@
     </div>
 </div>
 
-{% comment %} {% render 'product-card', product_product: product %} {% endcomment %}
+{% comment %} {% render 'product-card', product_product: product, vendor_name: section.settings.vendor_name %} {% endcomment %}
