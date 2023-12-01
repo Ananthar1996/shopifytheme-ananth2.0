@@ -1,0 +1,17 @@
+{
+    "sections": {
+        "template": {
+            "type": "template-customer-order"
+        },
+        "contact-form": {
+            "type": "contact-form",
+            "settings": {
+                "title": "Contact us."
+            }
+        },
+        "featured-collection": {
+            "type": "featured-collection"
+        }
+    },
+    "order": ["template","featured-collection", "contact-form"]
+}
