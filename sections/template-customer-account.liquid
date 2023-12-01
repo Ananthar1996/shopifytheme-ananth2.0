@@ -1,0 +1,27 @@
+<div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+    <h1 class="text-2xl font-bold text-gray-700">Account</h1>
+
+
+    <div class="block md:flex gap-4">
+        {% assign number_of_order  = customer.orders | size %}
+        {% if number_of_orders > 0 %}
+            <div class="w-full my-6 md:my-12">
+                <h2 class="text-xk font-bold text-gray-700">Order History</h2>
+
+                <div class="">
+                    {% paginate customer.orders by 10 %}
+                        {% for order in customer.orders %}
+                            <div class="relative">
+                                {{ order.name }}
+                            </div>
+                        {% endfor %}
+                    {% endpaginate %}
+                </div>
+            </div>
+        {% else %}
+            <div class="w-full h-80 flex items-center justify-center">
+                <h2 class="text-base md:text-2xl font-medium">You currently dont have any orders</h2>
+            </div>
+        {% endif %}
+    </div>
+</div>
