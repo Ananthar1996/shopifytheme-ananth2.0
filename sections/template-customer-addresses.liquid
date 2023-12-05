@@ -11,6 +11,142 @@
                 <h2 class="text-lg font-medium">New address</h2>
                 <button x-on:click="new_address = false " class="text-gray-500">{% render 'icon-hamburger-close' %}</button>
             </div>
+
+
+            {% form 'customer_address', customer.new_address %}
+
+                {% comment %} first name {% endcomment %}
+                <div class="mb-4">
+                    <label for="address_fname_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">First name</label>
+                    <input 
+                    type="text" 
+                    name="address[first_name]" 
+                    id="address_fname_{{ form.id }}" 
+                    value="{{ form.first_name }}"
+                    class="w-full text-gray-700 border px-4 py-3 focus:outline-none"
+                    >
+                </div>
+
+                {% comment %} last name {% endcomment %}
+                <div class="mb-4">
+                    <label for="address_lname_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Last name</label>
+                    <input 
+                    type="text" 
+                    name="address[last_name]" 
+                    id="address_lname_{{ form.id }}" 
+                    value="{{ form.last_name }}"
+                    class="w-full text-gray-700 border px-4 py-3 focus:outline-none"
+                    >
+                </div>
+
+                {% comment %} company {% endcomment %}
+                <div class="mb-4">
+                    <label for="address_company_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Company</label>
+                    <input 
+                    type="text" 
+                    name="address[company]" 
+                    id="address_company_{{ form.id }}" 
+                    value="{{ form.company }}"
+                    class="w-full text-gray-700 border px-4 py-3 focus:outline-none"
+                    >
+                </div>
+
+                {% comment %} address 1 {% endcomment %}
+                <div class="mb-4">
+                    <label for="address_address1_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Address 1</label>
+                    <input 
+                    type="text" 
+                    name="address[address1]" 
+                    id="address_address1_{{ form.id }}" 
+                    value="{{ form.address1 }}"
+                    class="w-full text-gray-700 border px-4 py-3 focus:outline-none"
+                    >
+                </div>
+
+                {% comment %} address 2 {% endcomment %}
+                <div class="mb-4">
+                    <label for="address_address2_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Address 2</label>
+                    <input 
+                    type="text" 
+                    name="address[address2]" 
+                    id="address_address2_{{ form.id }}" 
+                    value="{{ form.address2 }}"
+                    class="w-full text-gray-700 border px-4 py-3 focus:outline-none"
+                    >
+                </div>
+
+                {% comment %} city {% endcomment %}
+                <div class="mb-4">
+                    <label for="address_city_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">City</label>
+                    <input 
+                    type="text" 
+                    name="address[city]" 
+                    id="address_city_{{ form.id }}" 
+                    value="{{ form.city }}"
+                    class="w-full text-gray-700 border px-4 py-3 focus:outline-none"
+                    >
+                </div>
+
+                {% comment %} country {% endcomment %}
+                <div class="mb-4">
+                    <label for="address_country_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Country</label>
+                    <select 
+                    name="address[country]" 
+                    id="address_country_{{ form.id }}" 
+                    value="{{ form.country }}"
+                    class="w-full text-gray-700 border px-4 py-3 focus:outline-none"
+                    data-country-selector
+                    data-id="{{ form.id }}"
+                    >
+                    {{ all_country_option_tags }}
+                    </select>
+                </div>
+
+                {% comment %} province {% endcomment %}
+                <div class="mb-4">
+                    <label for="address_province_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Province</label>
+                    <select 
+                    name="address[province]" 
+                    id="address_province_{{ form.id }}" 
+                    value="{{ form.province }}"
+                    class="w-full text-gray-700 border px-4 py-3 focus:outline-none"
+                    >
+
+                    </select>
+                </div>
+
+                {% comment %} Postal/zip code {% endcomment %}
+                <div class="mb-4">
+                    <label for="address_zip_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Postal/ZIP code</label>
+                    <input 
+                    type="number" 
+                    name="address[zip]" 
+                    id="address_zip_{{ form.id }}" 
+                    value="{{ form.zip }}"
+                    class="w-full text-gray-700 border px-4 py-3 focus:outline-none"
+                    >
+                </div>
+
+                {% comment %} Phone number {% endcomment %}
+                <div class="mb-4">
+                    <label for="address_phone_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Phone Number</label>
+                    <input 
+                    type="tel" 
+                    name="address[phone]" 
+                    id="address_phone_{{ form.id }}" 
+                    value="{{ form.phone }}"
+                    class="w-full text-gray-700 border px-4 py-3 focus:outline-none"
+                    >
+                </div>
+
+                <div class="flex flex-row gap-2">
+                    <button type="submit" class="w-full font-medium text-white bg-gray-700 hover:bg-gray-900 px-4 py-2">Create address</button>
+                    <button type="reset" class="w-full font-medium text-gray-700 border border-gray-700 px-4 py-2">Cancel</button>
+
+                </div>
+
+
+            {% endform %}
         </div>
     </div>
 
@@ -39,3 +175,97 @@
         {% endpaginate %}
     </div>
 </div>
+
+<script>
+    class CustomerAddress {
+        constructor() {
+            this.initCustomerAddress();
+            this.customerAddressesSelector();
+        }
+
+        initCustomerAddress() {
+            const allAddressesSelector = document.querySelectorAll('select[data-country-selector]');
+            if(allAddressesSelector.length < 1) return;
+
+            // console.log(allAddressesSelector);
+
+            allAddressesSelector.forEach(select => {
+                var selectedCountry = this.getSelectedCountry(select)
+
+                if(!selectedCountry) return;
+
+                var provines = selectedCountry.dataset.provinces;
+                var arrayOfProvince = JSON.parse(provinces);
+
+                var provinceSelector = document.querySelector(`#address_province_${select.dataset.id}`);
+
+                if(arrayOfProvince.length < 1) {
+                    provinceSelector.setAttribute('disabled', 'disabled');
+                } else {
+                    provinceSelector.removeAttribute('disabled');
+                }
+
+                provinceSelector.innerHTML = '';
+                var options = '';
+
+                for(var index = 0; index < arrayOfProvince.length; index++) {
+                    if(arrayOfProvince[index][0] === provinceSelector.getAttribute('value')) {
+                        option += `<option value="${arrayOfProvince[i][0]}" selected>${arrayOfProvince[i][0]}</option>`;
+                    } else {
+                        option += `<option value="${arrayOfProvince[i][0]}">${arrayOfProvince[i][0]}</option>`;
+                    }
+                }
+
+                provinceSelector.innerHTML = options;
+
+            })
+        }
+
+        getSelectedCountry(select) {
+            var option, selectedOption;
+            for( var index = 0; index < select.lenght; index++ ) {
+                option = select.options[index];
+
+                if(option.value === select.getAttribute('value')) {
+                    selectedOption = option; 
+                    selectedOption.setAttribute('selected', 'selected');
+                    break;
+                }
+            }
+
+            return selectedOption;
+        }
+    
+        customerAddressesSelector() {
+            const addressesSelector = document.querySelectorAll("select[data-country-selector]");
+            if(addressesSelector.length < 1) return;
+
+            addressesSelector.forEach(select => {
+                select.addEventListener('change', function(e) {
+                    var provinces = this.options[this.selectedIndex].dataset.provinces;
+                    var arrayOfProvince = JSON.parse(provinces);
+
+                    var provinceSelector = document.querySelector(`#address_province_${this.dataset.id}`)
+
+                    if(arrayOfProvince.length < 1) {
+                        provinceSelector.setAttribute('disabled', 'disabled');
+                    } else {
+                        provinceSelector.removeAttribute('disabled');
+                    }
+
+                    provinceSelector.innerHTML = '';
+                    var options = '';
+                    for(var index = 0; index < arrayOfProvince.length; index++ ) {
+                        options += `<option value="${arrayOfProvince[index][0]}">${arrayOfProvince[index][0]}</option>`;
+                    }
+
+                     provinceSelector.innerHTML = options;
+
+                });
+            })
+        }
+    
+    }
+
+    const customerAddress = new CustomerAddress();
+</script>
