@@ -15,7 +15,7 @@
         {% if search.performed %}
             {% if search.results.size > 0 %}
                 <div class="max-w-6xl mx-auto">
-                    <p class="text-gray-500 text-center my-10">{{ search.results.size }} results for the search term <strong>{{ search.terms | escape}}.</strong></p>
+                    <p class="text-gray-500 text-center my-10">{{ search.results.size }} results for the search term <strong>{{ search.terms | escape }}.</strong></p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         {% for item in search.results %}
                             {% case item.object_type %}
@@ -30,7 +30,7 @@
                 </div>
             {% else %}
                 <div class="text-center my-4">
-                    <p>No results found for the search term: <strong>{{ search.terms | escape}}</strong>. Try a different keyword</p>
+                    <p>No results found for the search term: <strong>{{ search.terms | escape }}</strong>. Try a different keyword</p>
                 </div>
             {% endif %}
         {% endif %}

@@ -2,7 +2,7 @@
     <div class="flex items-start md:items-end justify-between my-5">
         <div class="w-1/2">
             <h1 class="text-2xl font-bold text-gray-700">Order {{ order.name }}</h1>
-            <p class="text-gray-500 my-2">Placed on <strong>{{ order.created_at | date: format: 'date'}}</strong></p>
+            <p class="text-gray-500 my-2">Placed on <strong>{{ order.created_at | date: format: 'date' }}</strong></p>
             <span class="text-sm text-white bg-gray-700 rounded-full my-2 px-4 py-1">{{ order.financial_status_label }}</span>
         </div>
 
@@ -17,20 +17,20 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-12 p-4 md:p-12">
                     <div class="w-full h-80 min-h-80 bg-gray-200 rounded-md overflow-hidden border">
                         {% if line_item.image %}
-                            <img class="w-full h-full object-center object-cover" src="{{ line_item.image |  img_url: 'medium' }}" alt="{{ line_item.image.alt }}">
+                            <img class="w-full h-full object-center object-cover" src="{{ line_item.image | img_url: 'medium' }}" alt="{{ line_item.image.alt }}">
                         {% else %}
                             {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-center object-cover' }}
                         {% endif %}
                     </div>
 
                     <div>
-                        <h1 class="text-xl font-medium mb-4">{{ line_item.title |  link_to: line_item.product.url}}</h1>
+                        <h1 class="text-xl font-medium mb-4">{{ line_item.title | link_to: line_item.product.url }}</h1>
 
                         <table class="table-auto w-full mb-4">
                             <tbody>
                                 <tr>
                                     <td class="border border-gray-200 px-4 py-2">Price</td>
-                                    <td class="border border-gray-200 px-4 py-2">{{ line_item.original_price | money}}</td>
+                                    <td class="border border-gray-200 px-4 py-2">{{ line_item.original_price | money }}</td>
                                 </tr>
                                 <tr>
                                     <td class="border border-gray-200 px-4 py-2">Quantity</td>
@@ -38,7 +38,7 @@
                                 </tr>
                                 <tr>
                                     <td class="border border-gray-200 px-4 py-2">Final Price</td>
-                                    <td class="border border-gray-200 px-4 py-2">{{ line_item.final_line_price | money}}</td>
+                                    <td class="border border-gray-200 px-4 py-2">{{ line_item.final_line_price | money }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -58,7 +58,7 @@
                             <p>Province: {{ order.shipping_address.province }}</p>
                             <p>City: {{ order.shipping_address.city }}</p>
                             <p>Zip: {{ order.shipping_address.zip }}</p>
-                            <p>Country: {{ order.shipping_address.country}}</p>
+                            <p>Country: {{ order.shipping_address.country }}</p>
                         </div>
                     </div>
                 </div>
@@ -102,9 +102,9 @@
                     {% assign credit_card_company = transaction.payment_details.credit_card_company %}
                     {% assign credit_card_last_four_digits = transaction.payment_details.credit_card_number %}
 
-                    {% if credit_card_company  %}
+                    {% if credit_card_company %}
                         <p>{{ credit_card_company }}</p>
-                        <p>{{ credit_card_last_four_digits}}</p>
+                        <p>{{ credit_card_last_four_digits }}</p>
 
                         {% case transaction.status %}
                             {% when 'failure' %}
