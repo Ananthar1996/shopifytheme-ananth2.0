@@ -21,6 +21,17 @@ class ProductModel extends HTMLElement {
         if(!mediaID) return;
 
         const openModalButton = this.querySelector(`button[id="productModelOpenButton_${mediaID}"]`);
+        
+        openModalButton.addEventListener('click', function(e) {
+            modal.querySelector("#body").innerHTML = "";
+
+            const template = document.querySelector(`product-model[data-media-id="${mediaID}"] > template`);
+
+            const clone = template.content.cloneNode(true);
+            modal.querySelector("#body").appendChild(clone);
+            modal.querySelector("#body > model-viewer").setAttribute("reveal", "auto");
+        });
+    
     }
 }
 
