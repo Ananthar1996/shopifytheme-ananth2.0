@@ -1,0 +1,65 @@
+{% comment %} <div class="flex flex-col item-center my-8">
+        <h1 class="text-center text-3xl">{{ section.settings.title }}</h1>
+    <div class="max-w-6 mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-4 p-2">
+            {% for product in section.settings.another_collection.products limit: section.settings.number_of_products_to_show %}
+                {% render 'product-card', product_product: product %}
+            {% else %}
+                {% for item in (1..4) %}
+                    {% render 'product-card-placeholder' %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</div> {% endcomment %}
+
+<div class="bg-white">
+     <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <h2 class="sr-only">{{ section.settings.title }}</h2>
+
+        <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+            {% for product in section.settings.another_collection.products limit: section.settings.number_of_products_to_show  %}
+                    {% render 'product-card', product_product: product %}
+            {% else %}
+                {% for item in (1..4) %}
+                    {% render 'product-card-placeholder' %}
+                {% endfor %}
+            {% endfor %} 
+        </div>
+    </div>
+</div>
+
+
+
+{% schema %}
+    {
+        "name": "Collection",
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "default": "Collection",
+                "label": "Title"
+            },
+            {
+                "type": "collection",
+                "id": "another_collection",
+                "label": "Collection"
+            },
+            {
+                "type": "range",
+                "id": "number_of_products_to_show",
+                "min": 4,
+                "max": 12,
+                "default": 4,
+                "label": "Number of products to show",
+                "step": 1
+            }
+        ],
+        "presets": [
+            {
+                "name": "Another Collection"
+            }
+        ]
+    }
+{% endschema %}

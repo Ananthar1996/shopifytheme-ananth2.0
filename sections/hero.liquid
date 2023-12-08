@@ -1,0 +1,69 @@
+<section class="relative overflow-hidden w-full h-400px">
+    {% if section.settings.image != blank %}
+        <img class="w-full h-full sm:h-auto" src="{{ section.settings.image |  image_url }}" alt="{{ section.settings.image.alt }}">
+    {% else %}
+        {% assign placeholder = "lifestyle-2" %}
+        {{ placeholder | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-full">
+        <div class="mx-auto max-w-screen-xl py-5">
+            <div class="flex w-1/3 h-1/3 p-10 ml-5 rounded-lg text-start">
+                <div class="flex-grow lg:w-1/2 md:w-8/12 mx-auto">
+                   <div class="pb-10 text-white ">
+                        <h1 class="font-medium text-2xl md:text-4xl lg:text-6xl">
+                            {{ section.settings.title }}
+                        </h1>
+                        <p class= "font-medium text-xl md:text-3xl lg:text-6xl">{{ section.settings.description }}</p>
+                   </div>     
+                    <a class="align-center bg-white p-2 md:pd-5 rounded-sm shadow-sm shadow-white transition hover:shadow-none duration-300 md:focus:shadow-none" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% schema %}
+    {
+        "name": "Hero",
+        "class": "hero-section",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Heading Background Image"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "default": "Example Heading",
+                "label": "Heading Title"
+            },
+            {
+                "type": "richtext",
+                "id": "description",
+                "default": "<p>Example Paragraph</p>",
+                "label": "Heading Description"
+            },
+            {
+                "type": "text",
+                "id": "button_label",
+                "default": "Button",
+                "label": "Heading Button Label"
+            },
+            {
+                "type": "url",
+                "id": "button_link",
+                "label": "Heading Button LInk"
+            }
+        ], 
+        "presets": [
+            {
+                "category": "Hero",
+                "name": "Simple Hero"
+            }
+        ]
+    }
+    {% endschema %}
