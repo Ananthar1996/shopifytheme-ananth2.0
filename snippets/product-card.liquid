@@ -9,7 +9,7 @@
                     <img src="{{ product_product.featured_image | img_url: 'medium' }}" alt="{{ product_product.featured_image.alt }}" class="h-full w-full object-cover object-center group-hover:opacity-75">
                 </div>
             {% else %}
-            {{ 'product-1' | placeholder_svg_tag: 'h-full w-full object-cover object-center group-hover:opacity-75' }}      
+                {{ 'product-1' | placeholder_svg_tag: 'h-full w-full object-cover object-center group-hover:opacity-75' }}      
             {% endif %}
 
             <h3 class="mt-4 text-sm text-gray-700">{{ product_product.title }}</h3>
