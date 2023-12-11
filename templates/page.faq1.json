@@ -1,14 +1,23 @@
 {
-    "sections": {
-        "template": {
-            "type": "template-page-faq1",
-            "blocks": {
-                
-            },
-            "block_order": []
+  "sections": {
+    "template": {
+      "type": "template-page-faq1",
+      "blocks": {
+        "65ef85f8-d1fb-4934-a4bd-6f4df62ebeb9": {
+          "type": "category",
+          "settings": {
+            "title": "Shipping"
+          }
         }
-    },
-    "order": [
-        "template"
-    ]
+      },
+      "block_order": [
+        "65ef85f8-d1fb-4934-a4bd-6f4df62ebeb9"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "template"
+  ]
 }
