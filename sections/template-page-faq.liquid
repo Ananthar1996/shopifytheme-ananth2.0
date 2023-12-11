@@ -1,30 +1,77 @@
 <div class="container mx-auto">
-    <div class="flex flex-wrap my-5">
+    <div>
         <h3 class="text-center">{{ page.title }}</h3>
     </div>
-    <div class="divide-y divide-gray-200">
-        
-        <div class="p-4">
-            <div class="flex items-center justify-between">
-            <h2 class="text-lg font-semibold">Accordion Item 1</h2>
-            <button class="text-blue-500">Toggle</button>
-            </div>
-            <div class="mt-2">Content for Accordion Item 1</div>
-        </div>
-
-        <div class="p-4">
-            <div class="flex items-center justify-between">
-            <h2 class="text-lg font-semibold">Accordion Item 2</h2>
-            <button class="text-blue-500">Toggle</button>
-            </div>
-            <div class="mt-2">Content for Accordion Item 2</div>
-        </div>
-
-
-    </div>
+    <ul class="accordian">
+        {% for block in section.blocks %}
+            <li>
+                <input type="radio" name="accordion" id="faq-{{ block.id }}">
+                <label for="faq-{{ block.id }}">{{ block.settings.title }}</label>
+                    <div class="content">
+                        <p>
+                            {{ block.settings.answer }}
+                        </p>
+                    </div>
+            </li>
+        {% endfor %}
+    </ul>
 </div>
 
+<style>
+    .accordian{
+        margin: 60px auto;
+        width: 600px;
+    }
 
+    .accordian li{
+        list-style: none;
+        width: 100%;
+        margin: 20px;
+        padding: 10px;
+        border-radius: 8px;
+        background: #e3edf7;
+        box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+                    -6px -6px 10px --1px rgba(255, 255, 255, 0.7);
+    }
+
+    .accordian li label{
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    label::before{
+        content: '+';
+        margin-right: 10px;
+        font-size: 24px;
+        font-weight: 600;
+    }
+    input[type="radio"]{
+        display: none;
+    }
+
+    .accordian .content{
+        color: #555;
+        padding: 0 10px;
+        line-height: 26px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s , padding 0.5s;
+    }
+
+    .accordian input[type="radio"]:checked + label + .content{
+        max-height: 400px;
+        padding: 10px 10px 20px;
+    }
+
+    .accordian input[type="radio"]:checked + label::before{
+        content: '-';
+    }
+
+</style>
 
 
 
