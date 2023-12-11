@@ -1,11 +1,31 @@
 {
   "sections": {
-      "template": {
-          "type": "template-page-faq",
-          "settings": {}
+    "template": {
+      "type": "template-page-faq",
+      "blocks": {
+        "527214d5-dee4-45d4-abe4-5b03a2879ff9": {
+          "type": "category",
+          "settings": {
+            "title": "asdasdasdad"
+          }
+        },
+        "e2c41ff8-cefc-4101-ba4c-cbe048a24176": {
+          "type": "question",
+          "settings": {
+            "title": "Question 1",
+            "body": "<p>asdasdasdasda<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "527214d5-dee4-45d4-abe4-5b03a2879ff9",
+        "e2c41ff8-cefc-4101-ba4c-cbe048a24176"
+      ],
+      "settings": {
       }
+    }
   },
   "order": [
-      "template"
+    "template"
   ]
 }
