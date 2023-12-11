@@ -2,38 +2,35 @@
     <div>
         <h3 class="text-center">{{ page.title }}</h3>
     </div>
-    <ul class="accordian">
+    <ul class="accordion">
         {% for block in section.blocks %}
             <li>
                 <input type="radio" name="accordion" id="faq-{{ block.id }}">
                 <label for="faq-{{ block.id }}">{{ block.settings.title }}</label>
-                    <div class="content">
-                        <p>
-                            {{ block.settings.answer }}
-                        </p>
-                    </div>
+                <div class="content">
+                    <p>{{ block.settings.answer }}</p>
+                </div>
             </li>
         {% endfor %}
     </ul>
 </div>
 
 <style>
-    .accordian{
+    .accordion {
         margin: 60px auto;
-        width: 600px;
+        width: 100%; /* Adjusted width for responsiveness */
+        max-width: 600px; /* Set a max-width for larger screens */
     }
 
-    .accordian li{
+    .accordion li {
         list-style: none;
-        width: 100%;
-        margin: 20px;
-        padding: 10px;
+        margin: 20px 0; /* Adjusted margin for better spacing on small screens */
         background: #f5f9fc;
         box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
                     -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
     }
 
-    .accordian li label{
+    .accordion li label {
         display: flex;
         align-items: center;
         padding: 10px;
@@ -42,17 +39,18 @@
         cursor: pointer;
     }
 
-    label::before{
+    label::before {
         content: '+';
         margin-right: 10px;
         font-size: 24px;
         font-weight: 600;
     }
-    input[type="radio"]{
+
+    input[type="radio"] {
         display: none;
     }
 
-    .accordian .content{
+    .accordion .content {
         color: #555;
         padding: 0 10px;
         line-height: 26px;
@@ -61,46 +59,44 @@
         transition: max-height 0.5s , padding 0.5s;
     }
 
-    .accordian input[type="radio"]:checked + label + .content{
+    .accordion input[type="radio"]:checked + label + .content {
         max-height: 400px;
         padding: 10px 10px 20px;
     }
 
-    .accordian input[type="radio"]:checked + label::before{
+    .accordion input[type="radio"]:checked + label::before {
         content: '-';
     }
 
+    /* Media query for small screens (adjust as needed) */
+    @media (max-width: 768px) {
+        .accordion li {
+            margin: 15px 0; /* Adjusted margin for better spacing on smaller screens */
+        }
+    }
 </style>
 
-
-
-
-
-
-
-
-
 {% schema %}
-    {
-        "name": "FAQ",
-        "blocks": [
-            {
-                "name": "FAQ Items",
-                "type": "faq",
-                "settings": [
-                    {
-                        "type": "text",
-                        "id": "title",
-                        "label": "Title",
-                        "default": "FAQ Title Example"
-                    },
-                    {
-                        "type": "richtext",
-                        "id": "answer",
-                        "label": "Answer"
-                    }
-                ]
-            }
-        ]
-    }
+{
+    "name": "FAQ",
+    "blocks": [
+        {
+            "name": "FAQ Items",
+            "type": "faq",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "FAQ Title Example"
+                },
+                {
+                    "type": "richtext",
+                    "id": "answer",
+                    "label": "Answer"
+                }
+            ]
+        }
+    ]
+}
 {% endschema %}
