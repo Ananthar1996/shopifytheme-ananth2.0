@@ -1,111 +1,123 @@
-<div class="container mx-auto">
-    <div>
-        <h3 class="text-center">{{ page.title }}</h3>
+<div class="faq-page">
+    <div class="faq-page-width">
+        <div class="faq-page-header">
+            <h1>{{ page.title }}</h1>
+            <div class="fap-page-header-content">
+                {{ page.content }}
+            </div>
+        </div>
+
+        <div class="faq-page-body">
+            {% for block in section.blocks %}
+                {% if block.type == 'category' %}
+                    <h2 class="faq-page-category">{{ block.settings.title }}</h2>
+                {% else %}
+                    <div class="faq-page-question">
+                        <header class="faq-page-question">
+                            <h3>{{ block.settings.title }}</h3>
+                        </header>
+                        <div class="faq-page-question-body">
+                            {{ block.settings.body }}
+                        </div>
+
+                    </div>
+                    
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
-    <ul class="accordion">
-        {% for block in section.blocks %}
-            <li>
-                <input type="radio" name="accordion" id="faq-{{ block.id }}">
-                <label for="faq-{{ block.id }}">{{ block.settings.title }}</label>
-                <div class="content">
-                    <p>{{ block.settings.answer }}</p>
-                </div>
-            </li>
-        {% endfor %}
-    </ul>
 </div>
 
+
 <style>
-    .accordion {
-        margin: 60px auto;
-        width: 100%; /* Adjusted width for responsiveness */
-        max-width: 600px; /* Set a max-width for larger screens */
+    .faq-page{
+        padding: 60px 0;
     }
 
-    .accordion li {
-        list-style: none;
-        margin: 20px 0; /* Adjusted margin for better spacing on small screens */
-        background: #f5f9fc;
-        box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
-                    -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+    .faq-page-width {
+        max-width: 500px;
+        margin: 0 auto;
+        width: calc(100% - 40px);
     }
 
-    .accordion li label {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        font-size: 18px;
-        font-weight: 600;
-        cursor: pointer;
+    .faq-page-header {
+        padding-bottom: 30px;
+
     }
 
-    label::before {
-        content: '+';
-        margin-right: 10px;
-        font-size: 24px;
-        font-weight: 600;
+    .faq-page-header h1 {
+        font-size: 44px;
+        margin-bottom: 10px;
+
     }
 
-    input[type="radio"] {
-        display: none;
+    .faq-page-header-content {
+        font-size: 21px;
     }
 
-    .accordion .content {
-        color: #555;
-        padding: 0 10px;
-        line-height: 26px;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s , padding 0.5s;
+    .faq-page-catergory {
+        text-transform: uppercase;
+        opacity: 0.4;
+        font-size: 14px;
+        margin-bottom: 20px;
     }
 
-    .accordion input[type="radio"]:checked + label + .content {
-        max-height: 400px;
-        padding: 10px 10px 20px;
+    .faq-page-question + .faq-page-catergory {
+        margin-top: 30px;
     }
 
-    .accordion input[type="radio"]:checked + label::before {
-        content: '-';
+    .faq-page-question{
+        border-bottom: 1px solid #ddd;
     }
 
-    /* Media query for small screens (adjust as needed) */
-    @media (max-width: 768px) {
+    .faq-page-question-header{
+        padding: 15px 0;
 
-        .accordion{
-            max-width: 345px;
-        }
-        
-        .accordion li {
-            margin: 15px 0; /* Adjusted margin for better spacing on smaller screens */
-        }
-
-        .accordion li label {
-            font-size: 16px; /* Adjust font size for smaller screens */
-        }
     }
+
+    .faq-page-question-header h3{
+            font-size: 18px;
+    }
+
+    .faq-page-question-body{
+            display: none;
+    }
+
+
 </style>
 
 {% schema %}
-{
-    "name": "FAQ",
-    "blocks": [
-        {
-            "name": "FAQ Items",
-            "type": "faq",
-            "settings": [
-                {
-                    "type": "text",
-                    "id": "title",
-                    "label": "Title",
-                    "default": "FAQ Title Example"
-                },
-                {
-                    "type": "richtext",
-                    "id": "answer",
-                    "label": "Answer"
-                }
-            ]
-        }
-    ]
-}
+    {
+        "name": "FAQ",
+        "settings": [],
+        "blocks": [
+            {
+                "type": "category",
+                "name": "Category",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Category title"
+                    }
+                ]
+            },
+            {
+                "type": "question",
+                "name": "Question",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Question title"
+                    },
+                    {
+                        "type": "richtext",
+                        "id": "body",
+                        "label": "Question body"
+                    }
+                ]
+            }
+        ]
+    }
 {% endschema %}
