@@ -1,11 +1,8 @@
 {
   "sections": {
       "template": {
-          "type": "template-page-faq1",
-          "blocks": {
-              
-          },
-          "block_order": []
+          "type": "template-page-faq",
+          "settings": {}
       }
   },
   "order": [
