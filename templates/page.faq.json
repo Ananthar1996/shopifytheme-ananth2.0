@@ -16,6 +16,13 @@
             "body": "<p>asdasdasdasda<\/p>"
           }
         },
+        "cfb00a14-ee8a-47a8-80c5-b67ebeaa88ed": {
+          "type": "question",
+          "settings": {
+            "title": "Question 2",
+            "body": "<p>adasdasdasdasdasd<\/p>"
+          }
+        },
         "fdbb63e6-9648-4964-a612-2b2226734746": {
           "type": "category",
           "settings": {
@@ -33,6 +40,7 @@
       "block_order": [
         "527214d5-dee4-45d4-abe4-5b03a2879ff9",
         "e2c41ff8-cefc-4101-ba4c-cbe048a24176",
+        "cfb00a14-ee8a-47a8-80c5-b67ebeaa88ed",
         "fdbb63e6-9648-4964-a612-2b2226734746",
         "72496d2e-8db8-4d01-a76f-b71fca1ac5e8"
       ],
