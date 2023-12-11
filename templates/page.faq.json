@@ -3,17 +3,17 @@
     "template": {
       "type": "template-page-faq",
       "blocks": {
-        "new-faq-item": {
-          "type": "faq",
-          "settings": {
-            "title": "Question 1",
-            "answer": "<p>To create a block, you can open customiser or a theme editor and then navigate to your faq page and there you can create a faq item. <\/p>"
-          }
-        },
         "fc33a466-c7af-4ea5-ae3f-37511e8cf801": {
           "type": "faq",
           "settings": {
             "title": "Question 2",
+            "answer": "<p>To create a block, you can open customiser or a theme editor and then navigate to your faq page and there you can create a faq item. <\/p>"
+          }
+        },
+        "new-faq-item": {
+          "type": "faq",
+          "settings": {
+            "title": "Question 1",
             "answer": "<p>To create a block, you can open customiser or a theme editor and then navigate to your faq page and there you can create a faq item. <\/p>"
           }
         },
@@ -33,8 +33,8 @@
         }
       },
       "block_order": [
-        "new-faq-item",
         "fc33a466-c7af-4ea5-ae3f-37511e8cf801",
+        "new-faq-item",
         "1a1d599b-d292-4a9b-872f-9be6fa36b17d",
         "39f00749-6584-4e61-bf7b-c31608b41c3c"
       ],
