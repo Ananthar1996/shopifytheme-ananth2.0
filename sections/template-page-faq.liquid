@@ -18,7 +18,9 @@
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
                         </header>
                         <div class="faq-page-question-body">
-                            {{ block.settings.body }}
+                            <div class="faq-page-question-body-inner">
+                                {{ block.settings.body }}
+                            </div>
                         </div>
 
                     </div>
@@ -64,7 +66,7 @@
   margin-bottom: 10px;
 }
 
-.faq-page-question + .faq-page-catergory {
+.faq-page-question + .faq-page-category {
   margin-top: 30px;
 }
 
@@ -77,6 +79,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-weight: 600;
+  cursor: pointer;
 
 }
 
@@ -87,10 +91,29 @@
 
 .faq-page-question-header svg {
     width: 36px;
+    transition: 0.3s transform;
+}
+
+.faq-page-question.active .faq-page-question-header svg{
+    transform: rotate(180deg)
 }
 
 .faq-page-question-body {
-      display: none;
+      max-height: 0;
+      overflow: hidden;
+      transition: 1s max-height;
+}
+
+.faq-page-question.active .faq-page-question-body{
+    max-height: 400px
+}
+
+.faq-page-question-body-inner > * + * {
+        margin-top: 20px;
+}
+
+.faq-page-question-body-inner{
+    padding-bottom: 20px;
 }
 </style>
 
@@ -129,3 +152,5 @@
         ]
     }
 {% endschema %}
+
+
