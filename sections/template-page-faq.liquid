@@ -1,156 +1,91 @@
-<div class="faq-page">
-    <div class="faq-page-width">
-        <div class="faq-page-header">
-            <h1>{{ page.title }}</h1>
-            <div class="fap-page-header-content">
-                {{ page.content }}
-            </div>
-        </div>
+<!-- In your-section.liquid -->
 
-        <div class="faq-page-body">
-            {% for block in section.blocks %}
-                {% if block.type == 'category' %}
-                    <h2 class="faq-page-category">{{ block.settings.title }}</h2>
-                {% else %}
-                    <div class="faq-page-question">
-                        <header class="faq-page-question-header">
-                            <h3>{{ block.settings.title }}</h3>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
-                        </header>
-                        <div class="faq-page-question-body">
-                            <div class="faq-page-question-body-inner">
-                                {{ block.settings.body }}
-                            </div>
-                        </div>
+<div class="container">
 
-                    </div>
-                    
-                {% endif %}
-            {% endfor %}
-        </div>
-    </div>
+  <h2>{{ section.settings.title }}</h2>
+  
+  <div class="btn-grid">
+    {% for block in section.blocks %}
+      <div class="btn">
+        <a href="{{ block.settings.button_link }}" class="btn-link">{{ block.settings.device_name }}</a>
+      </div>
+    {% endfor %}
+  </div>
+  
 </div>
 
-<style>
-    /* faq page */
-.faq-page{
-  padding: 60px 0;
-}
-
-.faq-page-width {
-  max-width: 500px;
-  margin: 0 auto;
-  width: calc(100% - 40px);
-}
-
-.faq-page-header {
-  padding-bottom: 30px;
-
-
-}
-
-.faq-page-header h1 {
-  font-size: 44px;
-  margin-bottom: 10px;
-
-}
-
-.faq-page-header-content {
-  font-size: 21px;
-}
-
-.faq-page-category {
-  text-transform: uppercase;
-  opacity: 0.4;
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-.faq-page-question + .faq-page-category {
-  margin-top: 30px;
-}
-
-.faq-page-question {
-  border-bottom: 1px solid #ddd;
-}
-
-.faq-page-question-header { 
-  padding: 20px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-weight: 600;
-  cursor: pointer;
-
-}
-
-.faq-page-question-header h3 {
-      font-size: 18px;
-      flex: 1;
-}
-
-.faq-page-question-header svg {
-    width: 36px;
-    transition: 0.3s transform;
-}
-
-.faq-page-question.active .faq-page-question-header svg{
-    transform: rotate(180deg)
-}
-
-.faq-page-question-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: 1s max-height;
-}
-
-.faq-page-question.active .faq-page-question-body{
-    max-height: 400px
-}
-
-.faq-page-question-body-inner > * + * {
-        margin-top: 20px;
-}
-
-.faq-page-question-body-inner{
-    padding-bottom: 20px;
-}
-</style>
-
 {% schema %}
+{
+  "name": "deviceselect",
+  "settings": [
     {
-        "name": "FAQ",
-        "settings": [],
-        "blocks": [
-            {
-                "type": "category",
-                "name": "Category",
-                "settings": [
-                    {
-                        "type": "text",
-                        "id": "title",
-                        "label": "Category title"
-                    }
-                ]
-            },
-            {
-                "type": "question",
-                "name": "Question",
-                "settings": [
-                    {
-                        "type": "text",
-                        "id": "title",
-                        "label": "Question title"
-                    },
-                    {
-                        "type": "richtext",
-                        "id": "body",
-                        "label": "Question body"
-                    }
-                ]
-            }
-        ]
+      "type": "text",
+      "id": "title",
+      "label": "Collection title"
     }
+  ],
+  "blocks": [
+    {
+      "type": "device",
+      "name": "name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "device_name",
+          "label": "Device Name",
+          "default": "Device Name"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "deviceselect"
+    }
+  ]
+}
 {% endschema %}
 
+{% stylesheet %}
+<style>
+  .container {
+    text-align: center;
+    width: 80%;
+    margin: 0px auto;
+  }
 
+  .btn-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .btn {
+    text-align: center;
+    padding: 10px 0;
+    max-width: 200px; /* Set maximum width for the buttons */
+    width: 100%; /* Ensure buttons take up available space in the grid */
+  }
+
+  .btn-link {
+    display: block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+
+  @media (min-width: 768px) {
+    .btn-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+</style>
+{% endstylesheet %}
